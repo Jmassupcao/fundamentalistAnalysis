@@ -146,5 +146,48 @@ namespace src
             }
             return VPAs;
         }
+        public List<decimal> PL()
+        {
+            var PLs = new List<decimal>();
+            var lpas = this.LPA();
+
+            for(int i = 0; i < stocksQuote.Length; i++)
+            {
+                PLs[i] = stocksQuote[i]/lpas[i];
+            }
+            return PLs;
+        }
+        public List<decimal> TR()
+        {
+            var TRs = new List<decimal>();
+            var pl = this.PL();
+
+            for(int i = 0; i < stocksQuote.Length; i++)
+            {
+                TRs[i] = 1/pl[i];
+            }
+            return TRs;
+        }
+        public List<decimal> PVP()
+        {
+            var PVPs = new List<decimal>();
+            var vpa = this.VPA();
+
+            for(int i = 0; i < stocksQuote.Length; i++)
+            {
+                PVPs[i] = stocksQuote[i]/vpa[i];
+            }
+            return PVPs;
+        }
+        public List<decimal> PSR()
+        {
+            var PSRs = new List<decimal>();
+            
+            for(int i = 0; i < stocksQuote.Length; i++)
+            {
+                PSRs[i] = stocksQuote[i] / (netSales[i]/stocksAmount[i]);  
+            }
+            return PSRs;
+        }
     }
 }
